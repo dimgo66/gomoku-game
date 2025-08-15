@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гомоку - Пять в ряд</title>
+    <meta name="description" content="Играйте в Гомоку (Пять в ряд) против друзей или компьютера">
+    
+    <!-- Фавиконы -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/svg+xml" sizes="16x16" href="favicon-16x16.svg">
+    <link rel="icon" type="image/svg+xml" sizes="32x32" href="favicon-32x32.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.svg">
+    <link rel="manifest" href="site.webmanifest">
+    
+    <!-- Мета теги для PWA -->
+    <meta name="theme-color" content="#667eea">
+    <meta name="msapplication-TileColor" content="#667eea">
+    <meta name="application-name" content="Гомоку">
+    
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>🎯 Гомоку</h1>
+        <p class="subtitle">Пять в ряд для победы</p>
+    </header>
+
+    <main>
+        <!-- Панель управления -->
+        <section class="control-panel">
+            <div class="game-info">
+                <div class="current-player" id="currentPlayer">
+                    <span class="player-indicator"></span>
+                    <span class="player-text">Ход: Игрок 1 (Черный)</span>
+                </div>
+                
+                <div class="game-mode">
+                    <label for="gameMode">Режим:</label>
+                    <select id="gameMode">
+                        <option value="human">Против человека</option>
+                        <option value="ai">Против компьютера</option>
+                    </select>
+                </div>
+
+                <div class="board-size">
+                    <label for="boardSize">Размер поля:</label>
+                    <select id="boardSize">
+                        <option value="15">15×15</option>
+                        <option value="19">19×19</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="newGameBtn" class="btn btn-primary">🆕 Новая игра</button>
+                <button id="undoBtn" class="btn btn-secondary" disabled>↶ Отменить ход</button>
+                <button id="hintBtn" class="btn btn-secondary" disabled>💡 Подсказка</button>
+            </div>
+
+            <div class="game-stats">
+                <div class="stat">
+                    <span class="stat-label">Ходов:</span>
+                    <span id="moveCount">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Время:</span>
+                    <span id="gameTime">00:00</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Игровое поле -->
+        <section class="game-container">
+            <div id="gameBoard" class="game-board" role="grid" aria-label="Игровое поле Гомоку">
+                <!-- Игровое поле будет сгенерировано JavaScript -->
+            </div>
+        </section>
+
+        <!-- Панель статистики -->
+        <section class="statistics" id="statistics">
+            <h3>📊 Статистика</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number" id="player1Wins">0</span>
+                    <span class="stat-label">Победы Игрока 1</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="player2Wins">0</span>
+                    <span class="stat-label">Победы Игрока 2</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="draws">0</span>
+                    <span class="stat-label">Ничьи</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="totalGames">0</span>
+                    <span class="stat-label">Всего игр</span>
+                </div>
+            </div>
+            <button id="resetStatsBtn" class="btn btn-outline">🗑️ Сбросить статистику</button>
+        </section>
+    </main>
+
+    <!-- Модальные окна -->
+    <div id="gameEndModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle"></h2>
+                <button class="modal-close" aria-label="Закрыть">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage"></p>
+                <div class="modal-stats">
+                    <div>Количество ходов: <span id="modalMoves"></span></div>
+                    <div>Время игры: <span id="modalTime"></span></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="modalNewGameBtn" class="btn btn-primary">🆕 Новая игра</button>
+                <button class="modal-close btn btn-secondary">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="settingsModal" class="modal" role="dialog" aria-labelledby="settingsTitle" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="settingsTitle">⚙️ Настройки</h2>
+                <button class="modal-close" aria-label="Закрыть">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <label for="aiDifficulty">Сложность ИИ:</label>
+                    <select id="aiDifficulty">
+                        <option value="easy">Легко</option>
+                        <option value="medium" selected>Средне</option>
+                        <option value="hard">Сложно</option>
+                    </select>
+                </div>
+                <div class="setting-group">
+                    <label for="animationSpeed">Скорость анимации:</label>
+                    <select id="animationSpeed">
+                        <option value="fast">Быстро</option>
+                        <option value="normal" selected>Обычно</option>
+                        <option value="slow">Медленно</option>
+                    </select>
+                </div>
+                <div class="setting-group">
+                    <label>
+                        <input type="checkbox" id="soundEnabled" checked> 
+                        Звуковые эффекты
+                    </label>
+                </div>
+                <div class="setting-group">
+                    <label>
+                        <input type="checkbox" id="showCoordinates"> 
+                        Показывать координаты
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="saveSettingsBtn" class="btn btn-primary">💾 Сохранить</button>
+                <button class="modal-close btn btn-secondary">Отмена</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Кнопка настроек -->
+    <button id="settingsBtn" class="settings-btn" aria-label="Настройки" title="Настройки">⚙️</button>
+
+    <!-- Индикатор загрузки -->
+    <div id="loadingIndicator" class="loading-indicator" aria-hidden="true">
+        <div class="spinner"></div>
+        <p>ИИ думает...</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Игра Гомоку. Создано для изучения и развлечения.</p>
+        <p>
+            <a href="https://ru.wikipedia.org/wiki/Гомоку" target="_blank" rel="noopener">
+                📖 Правила игры
+            </a>
+        </p>
+    </footer>
+
+    <!-- JavaScript модули -->
+    <script src="js/game-model.js"></script>
+    <script src="js/game-view.js"></script>
+    <script src="js/ai-player.js"></script>
+    <script src="js/config-manager.js"></script>
+    <script src="js/game-controller.js"></script>
+</body>
+</html>

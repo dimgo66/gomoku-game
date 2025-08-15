@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Фон с градиентом -->
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#667eea"/>
+      <stop offset="100%" style="stop-color:#764ba2"/>
+    </radialGradient>
+    <radialGradient id="blackStone" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#4a5568"/>
+      <stop offset="100%" style="stop-color:#2c3e50"/>
+    </radialGradient>
+    <radialGradient id="whiteStone" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#ecf0f1"/>
+    </radialGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="1" dy="1" stdDeviation="1" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Круглый фон -->
+  <circle cx="16" cy="16" r="15" fill="url(#bg)" stroke="#fff" stroke-width="1"/>
+  
+  <!-- Игровая сетка (упрощенная) -->
+  <g stroke="#8b4513" stroke-width="0.5" opacity="0.6">
+    <!-- Горизонтальные линии -->
+    <line x1="6" y1="10" x2="26" y2="10"/>
+    <line x1="6" y1="16" x2="26" y2="16"/>
+    <line x1="6" y1="22" x2="26" y2="22"/>
+    <!-- Вертикальные линии -->
+    <line x1="10" y1="6" x2="10" y2="26"/>
+    <line x1="16" y1="6" x2="16" y2="26"/>
+    <line x1="22" y1="6" x2="22" y2="26"/>
+  </g>
+  
+  <!-- Черная фишка -->
+  <circle cx="10" cy="10" r="3" fill="url(#blackStone)" filter="url(#shadow)" stroke="#2d3748" stroke-width="0.3"/>
+  
+  <!-- Белая фишка -->
+  <circle cx="22" cy="22" r="3" fill="url(#whiteStone)" filter="url(#shadow)" stroke="#95a5a6" stroke-width="0.3"/>
+  
+  <!-- Центральная точка -->
+  <circle cx="16" cy="16" r="0.8" fill="#8b4513" opacity="0.7"/>
+</svg>

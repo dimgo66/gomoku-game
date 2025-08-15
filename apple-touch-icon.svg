@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" width="180" height="180">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#667eea"/>
+      <stop offset="100%" style="stop-color:#764ba2"/>
+    </radialGradient>
+    <radialGradient id="blackStone" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#4a5568"/>
+      <stop offset="100%" style="stop-color:#2c3e50"/>
+    </radialGradient>
+    <radialGradient id="whiteStone" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#ecf0f1"/>
+    </radialGradient>
+    <radialGradient id="boardBg" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" style="stop-color:#e6c79a"/>
+      <stop offset="100%" style="stop-color:#d4a574"/>
+    </radialGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="2" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Скругленный фон -->
+  <rect x="0" y="0" width="180" height="180" rx="30" fill="url(#bg)"/>
+  
+  <!-- Игровая доска -->
+  <rect x="15" y="15" width="150" height="150" rx="10" fill="url(#boardBg)" filter="url(#shadow)"/>
+  
+  <!-- Игровая сетка -->
+  <g stroke="#8b4513" stroke-width="1.5" opacity="0.7">
+    <!-- Горизонтальные линии -->
+    <line x1="30" y1="45" x2="150" y2="45"/>
+    <line x1="30" y1="65" x2="150" y2="65"/>
+    <line x1="30" y1="90" x2="150" y2="90"/>
+    <line x1="30" y1="115" x2="150" y2="115"/>
+    <line x1="30" y1="135" x2="150" y2="135"/>
+    <!-- Вертикальные линии -->
+    <line x1="45" y1="30" x2="45" y2="150"/>
+    <line x1="65" y1="30" x2="65" y2="150"/>
+    <line x1="90" y1="30" x2="90" y2="150"/>
+    <line x1="115" y1="30" x2="115" y2="150"/>
+    <line x1="135" y1="30" x2="135" y2="150"/>
+  </g>
+  
+  <!-- Центральные точки -->
+  <circle cx="65" cy="65" r="2" fill="#8b4513" opacity="0.8"/>
+  <circle cx="115" cy="65" r="2" fill="#8b4513" opacity="0.8"/>
+  <circle cx="90" cy="90" r="2" fill="#8b4513" opacity="0.8"/>
+  <circle cx="65" cy="115" r="2" fill="#8b4513" opacity="0.8"/>
+  <circle cx="115" cy="115" r="2" fill="#8b4513" opacity="0.8"/>
+  
+  <!-- Черные фишки -->
+  <circle cx="65" cy="45" r="8" fill="url(#blackStone)" filter="url(#shadow)" stroke="#2d3748" stroke-width="0.5"/>
+  <circle cx="90" cy="65" r="8" fill="url(#blackStone)" filter="url(#shadow)" stroke="#2d3748" stroke-width="0.5"/>
+  <circle cx="115" cy="90" r="8" fill="url(#blackStone)" filter="url(#shadow)" stroke="#2d3748" stroke-width="0.5"/>
+  
+  <!-- Белые фишки -->
+  <circle cx="90" cy="45" r="8" fill="url(#whiteStone)" filter="url(#shadow)" stroke="#95a5a6" stroke-width="0.5"/>
+  <circle cx="115" cy="65" r="8" fill="url(#whiteStone)" filter="url(#shadow)" stroke="#95a5a6" stroke-width="0.5"/>
+  
+  <!-- Подсветка последнего хода -->
+  <circle cx="115" cy="90" r="10" fill="none" stroke="#f1c40f" stroke-width="2" opacity="0.8" stroke-dasharray="3,3">
+    <animate attributeName="stroke-dashoffset" values="0;6" dur="1s" repeatCount="indefinite"/>
+  </circle>
+</svg>
