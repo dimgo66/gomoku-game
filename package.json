@@ -1,0 +1,37 @@
+{
+  "name": "gomoku-game",
+  "version": "1.0.0",
+  "description": "🎯 Современная веб-игра Гомоку с ИИ - Пять в ряд для победы!",
+  "main": "index.html",
+  "keywords": [
+    "gomoku",
+    "game",
+    "ai",
+    "javascript",
+    "html5",
+    "strategy",
+    "board-game",
+    "five-in-a-row"
+  ],
+  "author": "Dmitry Alekseevich",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dimgo66/gomoku-game.git"
+  },
+  "homepage": "https://github.com/dimgo66/gomoku-game#readme",
+  "bugs": {
+    "url": "https://github.com/dimgo66/gomoku-game/issues"
+  },
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000",
+    "deploy": "vercel --prod"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie <= 11"
+  ]
+}
