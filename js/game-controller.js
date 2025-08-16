@@ -31,6 +31,9 @@ class GameController {
         // Обновить статистику
         this.updateStatisticsDisplay();
         
+        // Обновить дату в футере
+        this.updateFooterDate();
+        
         console.log('Игра Гомоку инициализирована!');
     }
 
@@ -476,6 +479,32 @@ class GameController {
 
         this.gameView.showNotification(message, 'info');
         console.log('Анализ позиции:', analysis);
+    }
+
+    /**
+     * Обновление даты в футере
+     */
+    updateFooterDate() {
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        const currentDate = now.toLocaleDateString('ru-RU', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            weekday: 'long'
+        });
+        
+        // Обновить год в копирайте
+        const yearElement = document.getElementById('currentYear');
+        if (yearElement) {
+            yearElement.textContent = currentYear;
+        }
+        
+        // Обновить текущую дату
+        const dateElement = document.getElementById('todayDate');
+        if (dateElement) {
+            dateElement.textContent = currentDate;
+        }
     }
 
     /**
